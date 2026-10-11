@@ -1,8 +1,12 @@
 # —— 依赖与缓存 ——
 node_modules/
 
-# —— 构建产物（都可由源重建）——
-dist/
+# —— 构建产物 ——
+# dist 下只备份两个最终交付物（exe 单文件、debug APK）；
+# onedir 文件夹与 build/、web/ 都可由源重建，不入库。
+dist/*
+!dist/Jianting.exe
+!dist/Jianting-debug.apk
 build/
 web/
 
