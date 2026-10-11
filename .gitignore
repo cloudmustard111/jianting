@@ -1,0 +1,23 @@
+# —— 依赖与缓存 ——
+node_modules/
+
+# —— 构建产物（都可由源重建）——
+dist/
+build/
+web/
+
+# —— Python ——
+__pycache__/
+*.pyc
+
+# —— Android（Capacitor 工程生成物与机器本地配置）——
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/capacitor-cordova-android-plugins/
+android/app/src/main/assets/public/
+
+# —— 系统/编辑器杂项 ——
+Thumbs.db
+Desktop.ini

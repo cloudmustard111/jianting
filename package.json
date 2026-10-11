@@ -1,0 +1,21 @@
+{
+  "name": "jianting",
+  "version": "1.0.0",
+  "description": "简听 JIANTING —— 简谱级数·和弦·练耳 本地工具（web 源）",
+  "scripts": {
+    "sync": "python tools/pack_web.py && npx cap sync android",
+    "apk": "npm run sync && cd android && gradlew.bat assembleDebug"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/core": "^8.5.3",
+    "@capacitor/filesystem": "^8.1.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.5.3"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "appId": "com.jianting.app",
+  "appName": "简听 JIANTING",
+  "webDir": "web",
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

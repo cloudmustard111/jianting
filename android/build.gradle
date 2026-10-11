@@ -1,0 +1,46 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    repositories {
+        // 本机网络 dl.google.com 不可达：阿里云镜像优先，原仓库留作兜底
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        classpath 'com.google.gms:google-services:4.4.4'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+apply from: "variables.gradle"
+
+allprojects {
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+// 本机 SDK 只装了 build-tools 36.0.0；AGP 8.13 默认要 35.0.0。
+// 在根上统一注入，覆盖所有用 AGP 的子模块（app、capacitor-android、cordova 插件壳）。
+subprojects { sub ->
+    sub.pluginManager.withPlugin('com.android.application') { pk ->
+        sub.extensions.getByType(com.android.build.api.dsl.ApplicationExtension).buildToolsVersion = '36.0.0'
+    }
+    sub.pluginManager.withPlugin('com.android.library') { pk ->
+        sub.extensions.getByType(com.android.build.api.dsl.LibraryExtension).buildToolsVersion = '36.0.0'
+    }
+}

@@ -1,0 +1,143 @@
+{
+  "title": "ChordLab 重做 · 选择视觉世界",
+  "question": "掷骰把构建分配给了「和弦周报」（我的候选清单第 4 位）。保留它、选一位挑战者、选我的首推、走品类别 standard、还是重掷？",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "和弦周报 CHORD WEEKLY",
+      "kicker": "THE ROLL",
+      "lineage": "中文音乐刊物排行榜与每周数据版面",
+      "thesis": "把整个工具读作一份音乐周刊的数据版面：每个数字都在排行榜上，每次练习都改变名次。",
+      "palette": ["#f7f3e8", "#1c1a17", "#c8401f", "#1f4d3a", "#1f3a6e", "#b07d2b"],
+      "materials": ["刊物纸白", "栏目色条", "压缩数字", "变动记号"],
+      "viewport": "刊头一行（新名 + 期号「第 47 期 · 今日」）压顶；左栏为 39 种和弦的榜单式数据表，右栏是「本周弱项榜 ▲▼」与今日目标；底部一条常驻和弦卷帘试音带。导航是刊头下的四个栏目色签。",
+      "risk": "版面若只学刊物皮毛，会像剪报拼贴，牺牲工具的效率与对齐。",
+      "raised": [
+        { "from": "星图星等", "raise": "弱项榜与复习队列采用固定星等刻度：掌握度一律用同一分级记号呈现，不随版面变化。" },
+        { "from": "单色营销", "raise": "断言-证据配对：每个统计数字旁都可展开当日的原始答题流水作证。" },
+        { "from": "可变字样张", "raise": "刊头与和弦名以巨大展示字对比微型等宽标注，层级只靠尺度，不靠线框。" }
+      ],
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "刊头（名+期号）", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true },
+        { "label": "栏目色签导航", "x": 0, "y": 2, "w": 12, "h": 1 },
+        { "label": "和弦数据表", "x": 0, "y": 3, "w": 7, "h": 7 },
+        { "label": "弱项榜 ▲▼", "x": 7, "y": 3, "w": 5, "h": 4 },
+        { "label": "今日目标/卷帘试音带", "x": 7, "y": 7, "w": 5, "h": 3 }
+      ] },
+      "comp": ".impeccable/mocks/decision/assigned.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "简听 JIANTING",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "简谱歌本与中文音乐教材印刷传统",
+      "thesis": "用中国音乐学习者每天都在读的简谱语法做整个界面：数字即音，点线即时值。",
+      "palette": ["#faf6ec", "#22211d", "#b5432a", "#2d5f8a"],
+      "materials": ["教材内页暖白", "简谱数字记号", "八度点与时值线"],
+      "viewport": "顶部一条简谱级数带实时显示当前调的和弦级数；左栏和弦卡按调性展开为 1–7 级数字记号，右栏今日练习以「课时」计量；调性切换时全页级数重算。",
+      "risk": "简谱风在音乐工具里并不罕见，需靠真正的教材级中文排版工艺拉开差距（熟悉感风险）。",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "简谱级数带", "x": 0, "y": 0, "w": 12, "h": 2, "accent": true },
+        { "label": "和弦卡（按级展开）", "x": 0, "y": 2, "w": 7, "h": 8 },
+        { "label": "今日课时/练习", "x": 7, "y": 2, "w": 5, "h": 5 },
+        { "label": "调性切换", "x": 7, "y": 7, "w": 5, "h": 3 }
+      ] },
+      "comp": ".impeccable/mocks/decision/model-pick.webp"
+    },
+    {
+      "id": "challenger-centre-rail",
+      "label": "音典 YINDIAN",
+      "verdict": "wins",
+      "lineage": "参考版图书的批注排版：中轨键位 + 双栏正文 + 宽注边",
+      "thesis": "把工具做成一部被认真批注过的「和弦参考版」：铁黑与朱红三色，一条中央键轨贯穿全页。",
+      "palette": ["#f2ead9", "#1c1b18", "#b3401f"],
+      "materials": ["骨白纸面", "1px 制线引擎", "印刷记号状态"],
+      "viewport": "双栏正文（和弦条目）绕一条 6–9 字宽的中央键轨（根音选择器）排开；四周宽注边放练习批注：红批、日期戳、括起待复习项；全部状态是印刷记号——hairline 在歇、实心在按、划线在禁用、括起在关注。",
+      "case": "两轴都强：参考版正是这类工具在受众心中的信任文物；制线引擎与印刷记号让查询与复习比榜单版式更高效。",
+      "risk": "纸面古雅若做过了头，会与「编曲生态血缘感」拉开距离。",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "批注边（练习红批）", "x": 0, "y": 0, "w": 3, "h": 10 },
+        { "label": "左栏和弦条目", "x": 3, "y": 0, "w": 3, "h": 10 },
+        { "label": "中央键轨（根音）", "x": 6, "y": 0, "w": 1, "h": 10, "accent": true },
+        { "label": "右栏和弦条目", "x": 7, "y": 0, "w": 3, "h": 10 },
+        { "label": "导航/批注", "x": 10, "y": 0, "w": 2, "h": 10 }
+      ] },
+      "comp": ".impeccable/mocks/decision/challenger-centre-rail.webp"
+    },
+    {
+      "id": "challenger-crouwel",
+      "label": "格律 GELV",
+      "verdict": "competitive",
+      "lineage": "Wim Crouwel 网格字体样张",
+      "thesis": "和弦名以可见构造网格逐格搭建，页面就是网格的证明：极致对齐即效率。",
+      "palette": ["#f4f4f0", "#14141a", "#e04422"],
+      "materials": ["淡蓝构造网格线", "网格构建展示字", "单格重排"],
+      "viewport": "整页以可见网格为骨架；巨型网格构建的和弦字占据刊头；模块按整格重排；网格显隐是真实状态开关。",
+      "case": "产品清晰度守住（对齐纪律最强），但设计圈识别压过音乐学习者识别，只持一轴。",
+      "risk": "网格字用于中文需要自制字模级功夫，成本高；做浅了沦为装饰。",
+      "wireframe": { "cols": 12, "rows": 10, "regions": [
+        { "label": "网格大字（和弦名）", "x": 0, "y": 0, "w": 12, "h": 4, "accent": true },
+        { "label": "单元格导航", "x": 0, "y": 4, "w": 12, "h": 1 },
+        { "label": "内容格", "x": 0, "y": 5, "w": 8, "h": 5 },
+        { "label": "网格开关/状态", "x": 8, "y": 5, "w": 4, "h": 5 }
+      ] },
+      "comp": ".impeccable/mocks/decision/challenger-crouwel.webp"
+    },
+    {
+      "id": "challenger-star-atlas",
+      "label": "和弦星图",
+      "verdict": "declined",
+      "lineage": "夜版星图册",
+      "palette": ["#0e1a33", "#e8e4d8", "#c96a2b"],
+      "materials": ["深海军蓝", "星等点径", "星座连线"],
+      "case": "融不入：找和弦要穿越星图，查询效率降级；暗底星域还撞上品类别默认的「深底霓虹」。",
+      "kept": "掌握度的固定星等刻度记号。",
+      "hero": "https://impeccable.style/worlds/cards/notation-diagram-systems-star-atlas-hero.webp"
+    },
+    {
+      "id": "challenger-zoo-map",
+      "label": "模块色块领地",
+      "verdict": "declined",
+      "lineage": "动物园导览图",
+      "palette": ["#f5f1e4", "#8ed462", "#ff705d", "#f5e211"],
+      "materials": ["平涂色块", "胶囊控件"],
+      "case": "融不入：色块领地实际上是让世界接管布局，违背工具模式；糖果色撑不起专业细看。",
+      "kept": "全站统一的 0.4s 过冲动效时序。",
+      "hero": "https://impeccable.style/worlds/cards/aww2-zoo-gardens-guide-map-hero.webp"
+    },
+    {
+      "id": "challenger-mono-claim",
+      "label": "单色断言版",
+      "verdict": "declined",
+      "lineage": "单色产品营销页",
+      "palette": ["#fafafa", "#111111", "#2563eb"],
+      "materials": ["中性色阶", "幽灵按钮"],
+      "case": "融不入：灰底一强调正是品类别默认；识别度如通用 SaaS。",
+      "kept": "断言-证据配对：每个数字都能点开原始流水作证。",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-monochrome-product-marketing-hero.webp"
+    },
+    {
+      "id": "challenger-vf-specimen",
+      "label": "可变字样张",
+      "verdict": "declined",
+      "lineage": "可变字体交互样张",
+      "palette": ["#f4f2ec", "#141414", "#0a7d4f"],
+      "materials": ["超大展示字", "微型等宽标签"],
+      "case": "融不入：字体圈识别不是音乐学习者识别；滑杆重映射对训练无功能。",
+      "kept": "巨大展示字对比微型等宽标注的纯尺度层级。",
+      "hero": "https://impeccable.style/worlds/cards/variable-font-specimen-hero.webp"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code", "toggle": false },
+  "canon": true,
+  "canonCard": {
+    "label": "品类别 standard（ChordLab 保留原名）",
+    "thesis": "这个品类今天会出货的样子：深色音乐工具、侧栏导航、卡片网格，执行到无可挑剔。",
+    "palette": ["#14161c", "#e8eaf0", "#5b8cff"],
+    "materials": ["干净网格", "现行版式的完美执行"],
+    "viewport": "访客期望的排布，以全工艺执行；名字保留 ChordLab。",
+    "risk": "设计上就与竞品无从区分。"
+  },
+  "steer": true
+}

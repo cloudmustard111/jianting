@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05",
+  "title": "Design System: 简听 JIANTING",
+  "extensions": {
+    "colorMeta": {
+      "red": { "role": "primary", "displayName": "朱红", "canonical": "#b5432a", "tonalRamp": ["#2b0f08", "#4a1a0e", "#6d2515", "#8f3220", "#b5432a", "#cb6a4d", "#dd957a", "#eec3ad"] },
+      "indigo": { "role": "secondary", "displayName": "靛蓝", "canonical": "#2d5f8a", "tonalRamp": ["#0e1f2e", "#16324a", "#1f4463", "#2d5f8a", "#4a7ca6", "#6f9cbf", "#98bdd6", "#c3d9e8"] },
+      "green": { "role": "tertiary", "displayName": "石绿", "canonical": "#2f5d3a", "tonalRamp": ["#122517", "#1c3a24", "#264c31", "#2f5d3a", "#4d7a56", "#6f9a78", "#97bda1", "#c2ddc9"] },
+      "paper": { "role": "neutral", "displayName": "页边旧纸", "canonical": "#f6efdb", "tonalRamp": ["#c9bfa4", "#d8cfb8", "#ddd3ba", "#e9e1cb", "#efe6cc", "#f6efdb", "#f7f2e4", "#fcf8ea"] },
+      "panel": { "role": "neutral", "displayName": "内页白", "canonical": "#fcf8ea", "tonalRamp": ["#d8cfb8", "#e2dac4", "#eae4cf", "#f0e9d6", "#f4eeda", "#f8f3e1", "#fbf7ec", "#fcf8ea"] },
+      "paper-deep": { "role": "neutral", "displayName": "沉纸", "canonical": "#efe6cc", "tonalRamp": ["#c9bfa4", "#d3c9ae", "#ddd3ba", "#e5dcc5", "#e9e1cb", "#efe6cc", "#f4eeda", "#f9f4e5"] },
+      "paper-lift": { "role": "neutral", "displayName": "反白纸影", "canonical": "rgba(250, 246, 236, 0.7)", "tonalRamp": ["#a89c7e", "#c9bfa4", "#ddd3ba", "#e9e1cb", "#f0e9d6", "#f6efdb", "#faf6ec", "#fdfbf2"] },
+      "ink": { "role": "neutral", "displayName": "深墨", "canonical": "#22211d", "tonalRamp": ["#0f0e0c", "#22211d", "#3a3833", "#55503f", "#6b675c", "#8a8172", "#a89c7e", "#d8cfb8"] },
+      "ink-soft": { "role": "neutral", "displayName": "淡墨", "canonical": "#6b675c", "tonalRamp": ["#22211d", "#3a3833", "#4d4a42", "#6b675c", "#85806f", "#a89c7e", "#c9bfa4", "#e0d7bf"] },
+      "hairline": { "role": "neutral", "displayName": "界栏细线", "canonical": "#d8cfb8", "tonalRamp": ["#a89c7e", "#b5aa8d", "#c3b99d", "#d8cfb8", "#e0d7bf", "#e9e1cb", "#efe6cc", "#f6efdb"] },
+      "hairline-strong": { "role": "neutral", "displayName": "控件线", "canonical": "#a89c7e", "tonalRamp": ["#55503f", "#6b675c", "#7d7561", "#8f8670", "#a89c7e", "#bfb598", "#d3c9ae", "#e5dcc5"] },
+      "red-deep": { "role": "primary", "displayName": "深朱", "canonical": "#8f3220", "tonalRamp": ["#2b0f08", "#3f1409", "#571c0e", "#6f2513", "#8f3220", "#a53a26", "#b5432a", "#c96a4e"] },
+      "roll-row-white": { "role": "neutral", "displayName": "卷帘白键行", "canonical": "#f7f2e4", "tonalRamp": ["#c9bfa4", "#d3c9ae", "#ddd3ba", "#e4dbc4", "#ebe4cd", "#f1ebd9", "#f7f2e4", "#fbf7ec"] },
+      "roll-row-black": { "role": "neutral", "displayName": "卷帘黑键行", "canonical": "#e9e1cb", "tonalRamp": ["#b3a88b", "#bfb598", "#c9bfa4", "#d3c9ae", "#ddd3ba", "#e2dac4", "#e9e1cb", "#f0e9d6"] },
+      "roll-octave": { "role": "neutral", "displayName": "八度线", "canonical": "#c9bfa4", "tonalRamp": ["#8f8670", "#9c927a", "#a89c7e", "#b7ad91", "#c9bfa4", "#d5ccb2", "#e0d8bf", "#ebe4d0"] },
+      "roll-grid-beat": { "role": "neutral", "displayName": "拍线", "canonical": "#ddd3ba", "tonalRamp": ["#a89c7e", "#b5aa8d", "#c3b99d", "#d0c6ab", "#ddd3ba", "#e4dbc4", "#ebe4d0", "#f2ecdc"] },
+      "roll-ruler": { "role": "neutral", "displayName": "标尺纸", "canonical": "#efe8d5", "tonalRamp": ["#c3b99d", "#cdc4aa", "#d7ceb5", "#e0d8bf", "#e7e0ca", "#efe8d5", "#f4efdf", "#f9f5e9"] },
+      "roll-key-black": { "role": "neutral", "displayName": "墨键", "canonical": "#3a362c", "tonalRamp": ["#0f0e0b", "#1a1813", "#25221b", "#302c23", "#3a362c", "#4a453a", "#5b5647", "#6b675c"] },
+      "roll-key-white": { "role": "neutral", "displayName": "白键", "canonical": "#fbf7ec", "tonalRamp": ["#d8cfb8", "#e2dac4", "#eae4cf", "#f0e9d6", "#f5f0e1", "#f9f4e7", "#fbf7ec", "#fdfbf3"] },
+      "roll-key-frame": { "role": "neutral", "displayName": "键盘框", "canonical": "#55503f", "tonalRamp": ["#22211d", "#2d2a21", "#38352a", "#474335", "#55503f", "#6b675c", "#8a8172", "#a89c7e"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "刊头", "purpose": "刊头「简听」二字，宋体 400 不加粗，44px，层级靠字号与墨线。" },
+      "masthead-en": { "displayName": "字驻", "purpose": "刊头旁的拉丁字驻「JIANTING」，Georgia 20px、字距 0.22em、朱红，仅此一处。" },
+      "headline": { "displayName": "节题", "purpose": "各面板 h2，宋体 400、22px、下衬 1px 墨线。" },
+      "degree-display": { "displayName": "级数锚", "purpose": "详情面板左侧 Georgia 52px 朱红大级数，整页视觉锚。" },
+      "title": { "displayName": "和弦符号", "purpose": "详情面板和弦记号，黑体 700、30px。" },
+      "body": { "displayName": "正文", "purpose": "黑体 14px；说明文字 13px / lh 1.7。" },
+      "label": { "displayName": "界面标签", "purpose": "黑体 12px：计数、组题（字距 0.05em、下衬细线）、状态条。" },
+      "kai-note": { "displayName": "楷体批注", "purpose": "副题、调性标签、红批、统计与状态语，楷体 12–15px——老师批注的手写声部。" },
+      "numeral": { "displayName": "简谱数字", "purpose": "Georgia 承担全部音名、级数、MIDI 数字，10–17px 一条声部坡道。" }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "jp-turn", "value": "@keyframes jpTurn { 0% { opacity: 0; transform: translateY(-4px); } 100% { opacity: 1; transform: translateY(0); } } — animation: jpTurn .35s ease-out", "purpose": "调性切换后全页级数记号的统一翻动；全站唯一动画。" },
+      { "name": "no-transition", "value": "none", "purpose": "全站零 transition——状态切换即时如印刷：hover 直接沉入纸底或描边变墨。" },
+      { "name": "playhead-rAF", "value": "requestAnimationFrame 逐帧重绘画布", "purpose": "卷帘播放头按音频时钟（engine.now）换算拍位逐帧更新。" },
+      { "name": "prog-step-timeout", "value": "setTimeout 对齐 beatsToSeconds(startBeats)", "purpose": "进行页步进高亮由 Web Audio 精确时间轴驱动，不依赖 CSS 过渡。" }
+    ],
+    "breakpoints": [],
+    "canvasPaletteNote": "卷帘小节线复用控件线 #a89c7e，标尺与键盘八度文字复用淡墨 #6b675c——Canvas 不另立 token，只补纸阶专属的 8 个值。"
+  },
+  "components": [
+    {
+      "name": "教材目录签（主导航）",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "未选页沉入纸底，当前页签片升起接住正文，签片上压一条朱红书签线。",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-tab\">查询手册</a><a class=\"ds-nav-tab ds-is-active\">听辨训练</a><a class=\"ds-nav-tab\">进行 / MIDI</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 4px; align-items: flex-end; } .ds-nav-tab { padding: 6px 18px 5px; font-size: 14px; letter-spacing: .04em; color: var(--ink-soft, #6b675c); border: 1px solid var(--hairline-strong, #a89c7e); border-bottom: none; background: var(--paper-deep, #efe6cc); cursor: pointer; position: relative; text-decoration: none; } .ds-nav-tab:hover { color: var(--ink, #22211d); } .ds-nav-tab.ds-is-active { color: var(--red, #b5432a); border-color: var(--ink, #22211d); background: var(--panel, #fcf8ea); padding-bottom: 8px; font-weight: bold; } .ds-nav-tab.ds-is-active::after { content: \"\"; position: absolute; left: 10px; right: 10px; bottom: 4px; height: 2px; background: var(--red, #b5432a); } .ds-nav-tab:focus-visible { outline: 2px solid var(--indigo, #2d5f8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "调性切换钮",
+      "kind": "chip",
+      "refersTo": "key-btn",
+      "description": "12 枚 Georgia 音名钮（C–B，含 ♯），当前调朱红底纸色字；切换驱动全页级数重算。",
+      "html": "<div class=\"ds-key-switcher\"><span class=\"ds-key-label\">调</span><button class=\"ds-key-btn\">C</button><button class=\"ds-key-btn\">F♯</button><button class=\"ds-key-btn ds-is-active\">G</button></div>",
+      "css": ".ds-key-switcher { display: flex; align-items: center; gap: 6px; } .ds-key-label { font-family: var(--kai, KaiTi, \"Kaiti SC\", STKaiti, serif); font-size: 14px; color: var(--ink-soft, #6b675c); } .ds-key-btn { font-family: var(--num, Georgia, \"Times New Roman\", serif); font-size: 14px; min-width: 34px; padding: 3px 6px; background: transparent; border: 1px solid var(--hairline-strong, #a89c7e); color: var(--ink, #22211d); cursor: pointer; } .ds-key-btn:hover { border-color: var(--ink, #22211d); } .ds-key-btn.ds-is-active { background: var(--red, #b5432a); border-color: var(--red, #b5432a); color: var(--paper, #f6efdb); } .ds-key-btn:focus-visible { outline: 2px solid var(--indigo, #2d5f8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "根音钮",
+      "kind": "button",
+      "refersTo": "root-btn",
+      "description": "Georgia 音名 + 下方 11px 简谱级数副标的双行方钮；选中即墨底反白。",
+      "html": "<div class=\"ds-root-row\"><button class=\"ds-root-btn\">G<i>5</i></button><button class=\"ds-root-btn ds-is-active\">C<i>1</i></button><button class=\"ds-root-btn\">A<i>6</i></button></div>",
+      "css": ".ds-root-row { display: flex; flex-wrap: wrap; gap: 6px; } .ds-root-btn { font-family: var(--num, Georgia, \"Times New Roman\", serif); min-width: 52px; padding: 6px 0; font-size: 14px; background: transparent; border: 1px solid var(--hairline-strong, #a89c7e); color: var(--ink, #22211d); cursor: pointer; } .ds-root-btn i { font-style: normal; font-size: 11px; color: var(--ink-soft, #6b675c); display: block; } .ds-root-btn:hover { border-color: var(--ink, #22211d); background: var(--paper-deep, #efe6cc); } .ds-root-btn.ds-is-active { background: var(--ink, #22211d); border-color: var(--ink, #22211d); color: var(--paper, #f6efdb); font-weight: bold; } .ds-root-btn.ds-is-active i { color: rgba(250, 246, 236, .75); } .ds-root-btn:focus-visible { outline: 2px solid var(--indigo, #2d5f8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "和弦芯片",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "竖排记号/中文名/朱红级数角标的小方框；选中墨底反白，角标是签名交互的落点。",
+      "html": "<div class=\"ds-chips-row\"><button class=\"ds-chip\"><b>maj7</b><i>大七和弦</i><span class=\"ds-jp\">1</span></button><button class=\"ds-chip ds-is-active\"><b>7♭9</b><i>变化属七（降九）</i><span class=\"ds-jp\">5</span></button></div>",
+      "css": ".ds-chips-row { display: flex; flex-wrap: wrap; gap: 6px; } .ds-chip { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; padding: 6px 10px; background: transparent; border: 1px solid var(--hairline-strong, #a89c7e); color: var(--ink, #22211d); cursor: pointer; text-align: left; position: relative; font-family: var(--sans, \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif); } .ds-chip b { font-size: 14px; font-family: var(--num, Georgia, \"Times New Roman\", serif); letter-spacing: .02em; } .ds-chip i { font-style: normal; font-size: 11px; color: var(--ink-soft, #6b675c); } .ds-chip .ds-jp { position: absolute; top: 3px; right: 4px; font-family: var(--num, Georgia, serif); font-size: 10px; color: var(--red, #b5432a); } .ds-chip:hover { border-color: var(--ink, #22211d); background: var(--paper-deep, #efe6cc); } .ds-chip.ds-is-active { background: var(--ink, #22211d); border-color: var(--ink, #22211d); } .ds-chip.ds-is-active b { color: var(--paper, #f6efdb); } .ds-chip.ds-is-active i { color: rgba(250, 246, 236, .7); } .ds-chip.ds-is-active .ds-jp { color: var(--paper, #f6efdb); } .ds-chip:focus-visible { outline: 2px solid var(--indigo, #2d5f8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "按钮（主行动/默认/危险）",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "直角 1px 描边方钮，无 transition 状态即时切换；朱红底=主行动，朱红描边=危险。",
+      "html": "<div class=\"ds-btn-row\"><button class=\"ds-btn ds-btn-primary\">柱式试听</button><button class=\"ds-btn\">重听</button><button class=\"ds-btn ds-btn-danger\">停止</button></div>",
+      "css": ".ds-btn-row { display: flex; flex-wrap: wrap; gap: 10px; } .ds-btn { background: transparent; color: var(--ink, #22211d); border: 1px solid var(--ink, #22211d); padding: 8px 14px; font-size: 14px; font-family: var(--sans, \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif); cursor: pointer; } .ds-btn:hover { background: var(--paper-deep, #efe6cc); } .ds-btn-primary { background: var(--red, #b5432a); border-color: var(--red, #b5432a); color: var(--paper, #f6efdb); } .ds-btn-primary:hover { background: var(--red-deep, #8f3220); } .ds-btn-danger { border-color: var(--red, #b5432a); color: var(--red, #b5432a); } .ds-btn-danger:hover { background: rgba(181, 67, 42, .08); } .ds-btn:focus-visible { outline: 2px solid var(--indigo, #2d5f8a); outline-offset: 2px; }"
+    },
+    {
+      "name": "详情头：简谱级数锚",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Georgia 52px 朱红大级数 + 墨线分隔 + 30px 和弦符号；红批用楷体朱红——详情面板的视觉锚。",
+      "html": "<div class=\"ds-detail\"><div class=\"ds-detail-head\"><span class=\"ds-jianpu\">♭6</span><span class=\"ds-symbol\">A♭maj7</span><span class=\"ds-name\">A♭maj7 · 大七和弦</span></div><p class=\"ds-color\">漂浮、丝滑，爵士与 City Pop 的标志。</p></div>",
+      "css": ".ds-detail { background: var(--paper, #f6efdb); border: 1px solid var(--ink, #22211d); padding: 16px 20px; } .ds-detail-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; } .ds-jianpu { font-family: var(--num, Georgia, \"Times New Roman\", serif); font-size: 52px; line-height: 1; color: var(--red, #b5432a); min-width: 84px; border-right: 1px solid var(--hairline-strong, #a89c7e); padding-right: 16px; } .ds-symbol { font-size: 30px; font-weight: bold; color: var(--ink, #22211d); font-family: var(--sans, \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif); } .ds-name { font-size: 14px; color: var(--ink-soft, #6b675c); } .ds-color { margin: 8px 0 0; font-size: 13px; color: var(--red, #b5432a); font-family: var(--kai, KaiTi, \"Kaiti SC\", STKaiti, serif); }"
+    },
+    {
+      "name": "构成音块",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "沉纸底细线方音块，Georgia 音名 + 音级角色；根音变体朱红描边与朱红角色字。",
+      "html": "<div class=\"ds-note-list\"><span class=\"ds-note ds-is-root\"><b>G3</b><i>1</i></span><span class=\"ds-note\"><b>B3</b><i>3</i></span><span class=\"ds-note\"><b>D4</b><i>5</i></span><span class=\"ds-note\"><b>F4</b><i>♭7</i></span></div>",
+      "css": ".ds-note-list { display: flex; flex-wrap: wrap; gap: 8px; } .ds-note { display: inline-flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 12px; background: var(--paper-deep, #efe6cc); border: 1px solid var(--hairline, #d8cfb8); } .ds-note b { font-size: 15px; font-family: var(--num, Georgia, \"Times New Roman\", serif); font-weight: normal; } .ds-note i { font-style: normal; font-size: 11px; color: var(--ink-soft, #6b675c); } .ds-note.ds-is-root { background: rgba(181, 67, 42, .1); border-color: var(--red, #b5432a); } .ds-note.ds-is-root i { color: var(--red, #b5432a); }"
+    },
+    {
+      "name": "进行步",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "罗马数字 + 级名 + 简谱级数并置的三行方块；播放高亮=墨底反白。",
+      "html": "<div class=\"ds-step-list\"><div class=\"ds-prog-step ds-is-playing\"><b>I</b><span>Cmaj7 · 简谱 1</span><i>C3 E3 G3 B3</i></div><div class=\"ds-prog-step\"><b>V</b><span>G7 · 简谱 5</span><i>G3 B3 D4 F4</i></div></div>",
+      "css": ".ds-step-list { display: flex; flex-wrap: wrap; gap: 8px; } .ds-prog-step { display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 8px 12px; background: transparent; border: 1px solid var(--hairline-strong, #a89c7e); min-width: 76px; font-family: var(--sans, \"Microsoft YaHei\", \"PingFang SC\", system-ui, sans-serif); } .ds-prog-step b { font-size: 17px; color: var(--indigo, #2d5f8a); font-family: var(--num, Georgia, \"Times New Roman\", serif); } .ds-prog-step span { font-size: 12px; color: var(--ink, #22211d); } .ds-prog-step i { font-style: normal; font-size: 10px; color: var(--ink-soft, #6b675c); } .ds-prog-step.ds-is-playing { background: var(--ink, #22211d); border-color: var(--ink, #22211d); } .ds-prog-step.ds-is-playing b, .ds-prog-step.ds-is-playing span { color: var(--paper, #f6efdb); } .ds-prog-step.ds-is-playing i { color: rgba(250, 246, 236, .7); }"
+    },
+    {
+      "name": "状态批注条",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "楷体 12px 虚线框——状态即批注颜色：加载靛蓝、就绪石绿、降级朱红。",
+      "html": "<div class=\"ds-status-row\"><span class=\"ds-engine-status\">未初始化</span><span class=\"ds-engine-status ds-is-loading\">采样加载中…</span><span class=\"ds-engine-status ds-is-ready\">采样就绪</span><span class=\"ds-engine-status ds-is-synth\">合成音模式</span></div>",
+      "css": ".ds-status-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; } .ds-engine-status { display: inline-block; padding: 3px 10px; font-size: 12px; font-family: var(--kai, KaiTi, \"Kaiti SC\", STKaiti, serif); background: transparent; color: var(--ink-soft, #6b675c); border: 1px dashed var(--hairline-strong, #a89c7e); } .ds-engine-status.ds-is-ready { color: var(--green, #2f5d3a); border-color: var(--green, #2f5d3a); } .ds-engine-status.ds-is-loading { color: var(--indigo, #2d5f8a); border-color: var(--indigo, #2d5f8a); } .ds-engine-status.ds-is-synth { color: var(--red, #b5432a); border-color: var(--red, #b5432a); }"
+    },
+    {
+      "name": "卷帘纸面（静态示意）",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Canvas 卷帘的纸面语言示意：纸阶行底、朱红根音块、靛蓝和弦音块、右缘纸把手、朱红播放头（实际组件为 Canvas 绘制）。",
+      "html": "<div class=\"ds-roll\"><div class=\"ds-roll-row ds-is-black\"><span class=\"ds-roll-note ds-is-root\" style=\"left:8%;width:40%\"></span><span class=\"ds-roll-note ds-is-tone\" style=\"left:52%;width:30%\"></span></div><div class=\"ds-roll-row\"><span class=\"ds-roll-note ds-is-tone\" style=\"left:20%;width:44%\"></span></div><div class=\"ds-roll-row ds-is-black\"></div><div class=\"ds-roll-row\"><span class=\"ds-roll-note ds-is-tone\" style=\"left:8%;width:64%\"></span></div></div>",
+      "css": ".ds-roll { position: relative; border: 1px solid var(--ink, #22211d); background: var(--paper, #f6efdb); } .ds-roll::after { content: \"\"; position: absolute; top: 0; bottom: 0; left: 62%; width: 2px; background: var(--red, #b5432a); } .ds-roll-row { position: relative; height: 16px; background: var(--roll-row-white, #f7f2e4); } .ds-roll-row.ds-is-black { background: var(--roll-row-black, #e9e1cb); } .ds-roll-note { position: absolute; top: 1px; bottom: 1px; } .ds-roll-note.ds-is-root { background: var(--red, #b5432a); border-right: 2px solid rgba(250, 246, 236, .55); } .ds-roll-note.ds-is-tone { background: var(--indigo, #2d5f8a); border-right: 2px solid rgba(250, 246, 236, .55); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "一部被天天批注的和弦参考书",
+    "overview": "这句副题就印在刊头上（.tagline），是整个视觉系统的世界承诺：这个工具读起来应当像一本被认真使用、每天用朱红笔批注的中文音乐教材，而不是一个深色 DAW 或通用后台。用户在方向选择中已确认这一材质承诺（PRODUCT.md 品牌承诺）：教材内页纸面承载全页，深墨为墨，朱红为批注与主行动，靛蓝为次要信息；分隔靠 1px 墨线，无渐变、无玻璃、无阴影。界面语言是用户天天在读的简谱语法——数字即音，调性一切换全页级数重算。\n\n系统是工具优先的印刷品：密度偏实（14px 正文、6px 间距的密集芯片行），层级只靠字号、纸色分层与线的重量表达；状态切换即时如印刷（全站没有一条 transition），唯一的动画是调性切换后级数记号的统一翻动。中西文混排频繁（C/♯/♭/MIDI 数字），四套字体声部各司其职以保证排版不粗糙——这是用户明确要求的底线。",
+    "keyCharacteristics": [
+      "纸面三层（页边旧纸 / 内页白 / 沉纸）承担一切深度与状态，零 box-shadow、零渐变。",
+      "朱红稀缺：只落在「被批注的东西」上——级数记号、书签线、根音块、主行动、错题红批。",
+      "四声部字体：宋体刊头（只 400 重量）、黑体界面、楷体批注、Georgia 数字。",
+      "直角印刷品：圆角一律 0，控件是 1px 描边方框，选中即墨底反白。",
+      "签名交互「级数随调」：一切简谱级数记号由 jianpuDegree(rootPc, keyPc) 单点计算，调性切换全页重算并统一翻动。",
+      "Canvas 卷帘与 DOM 共用同一套纸面配色与朱红/靛蓝音块语义。"
+    ],
+    "rules": [
+      { "name": "朱红批注律", "body": "朱红只落在「被批注的东西」上——级数记号、书签线、根音块、主行动、错题；永不大面积铺底。一块屏幕读下来，朱红应当像批改痕迹，稀少而准确。", "section": "colors" },
+      { "name": "纸分三层律", "body": "页边旧纸 / 内页白 / 沉纸三层纸色承担一切深度、悬停与状态沉浮；同屏不引入第四种底色。", "section": "colors" },
+      { "name": "墨上纸律", "body": "深色块（墨底、朱红底）上的文字永远是纸色反白——主文字用 var(--paper)，次级文字用 rgba(250,246,236,.7–.75)，从不用纯白 #fff。", "section": "colors" },
+      { "name": "四声部律", "body": "宋体=刊头与节题；黑体=界面标签与正文；楷体=批注与状态语；Georgia=一切音名、级数、MIDI 数字。一个声部一个用途，不混用。", "section": "typography" },
+      { "name": "宋体不假粗律", "body": "宋体展示声部只以 400 重量出现（刊头 44px、节题 22px），层级靠字号与 1px 墨线，不靠加粗。", "section": "typography" },
+      { "name": "纸面无影律", "body": "零 box-shadow、零渐变、零玻璃；深度只用纸色分层 + 线。未来任何新界面不得引入阴影来「提层次」。", "section": "elevation" },
+      { "name": "印刷直角律", "body": "所有控件与容器 border-radius: 0；滚动条把柄 5px 与行内 code 2px 是仅有例外。", "section": "shapes" },
+      { "name": "级数随调律", "body": "一切简谱级数记号由 jianpuDegree(rootPc, keyPc) 单点计算，调性切换全页重算并统一播放 jp-turn 翻动（0.35s ease-out）——全站唯一动画。", "section": "components" }
+    ],
+    "dos": [
+      "Do 用三层纸色表达深度与状态（页边 #f6efdb / 内页 #fcf8ea / 沉纸 #efe6cc）；hover 优先「沉入纸底」或「描边变墨」，不引入新颜色。",
+      "Do 音名、简谱级数、MIDI 数字一律 Georgia；级数记号统一经 jianpuDegree(rootPc, keyPc) 计算，调性切换全页重算并播 jp-turn（0.35s ease-out）。",
+      "Do 状态用印刷记号语言：实线框=可点控件、墨底=选中、虚线框=旁注批注、朱红=当前/主行动/错题、靛蓝=次要信息、石绿=通过/就绪。",
+      "Do 分隔靠线不靠空白段差：节标题（h2）下衬 1px 墨线，组题下衬 1px 细线，列表条目间 1px 细线。"
+    ],
+    "donts": [
+      "Don't 不用 box-shadow、渐变、玻璃拟态——纸面配色与材质是世界承诺（PRODUCT.md 品牌承诺，终审已裁断确认），不得回退为深色 DAW 模仿或通用后台风。",
+      "Don't 不用圆角卡片与胶囊控件（radius 0；滚动条把柄 5px 与行内 code 2px 是仅有例外）。",
+      "Don't 宋体展示字不过 400 重量；不加载 webfont（宋/黑/楷/Georgia 全部系统字体栈，本地优先）。",
+      "Don't 声部不串：楷体不作正文与按钮字，黑体不作红批，Georgia 不排中文正文。",
+      "Don't 不用纯白 #fff、不用深色底页面——深色块上的文字用纸色反白（rgba(250,246,236,.7–.75)）。",
+      "Don't 不引入 transition 渐变状态——状态即时切换如印刷；动画只保留 jp-turn 一处。"
+    ]
+  }
+}

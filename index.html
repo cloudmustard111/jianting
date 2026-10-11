@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简听 JIANTING · 和弦与练耳</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <div class="title-row">
+      <h1>简听<span class="en">JIANTING</span></h1>
+      <span class="tagline">简谱级数 · 和弦 · 练耳<br>一部被天天批注的和弦参考书</span>
+      <nav id="main-nav">
+        <a class="nav-item active" data-page="query">查询手册</a>
+        <a class="nav-item" data-page="train">听辨训练</a>
+        <a class="nav-item" data-page="prog">进行 / MIDI</a>
+        <a class="nav-item" data-page="roll">卷帘编辑</a>
+      </nav>
+    </div>
+    <div class="masthead-row">
+      <div class="key-switcher" id="key-switcher"><span class="label">调</span></div>
+      <div id="engine-status" data-state="uninitialized">未初始化（点击音块或按钮解锁音频）</div>
+      <div id="engine-detail">上下文: none ｜ 采样: 0/17 ｜ 活动声部: 0</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== 查询手册页 ========== -->
+    <section id="page-query" class="page">
+      <h2>查询手册 <span class="count" id="type-count"></span></h2>
+      <p class="hint">选根音 → 选和弦类型 → 看键盘构成音与音级角色 → 试听。声位规则：根音锚定 C3–B3 后密集向上（查询与练耳一致）。</p>
+      <div class="sub-title">浏览方式
+        <div id="view-toggle" class="seg">
+          <button id="view-structure" class="active">按结构</button>
+          <button id="view-mood">按情绪</button>
+          <button id="view-mode">按调式</button>
+        </div>
+        <div id="mode-quality" class="seg" hidden>
+          <button id="mq-triad" class="active">三和弦</button>
+          <button id="mq-seventh">七和弦</button>
+        </div>
+        <span id="view-desc" class="view-desc">按三/六/七/九等结构分组</span>
+      </div>
+      <div class="sub-title">根音</div>
+      <div id="root-selector" class="root-row"></div>
+      <div class="sub-title">和弦类型 <input id="type-search" placeholder="搜索：maj7 / 减七 / 7♭9 …"></div>
+      <div id="type-groups"></div>
+
+      <div id="chord-detail" class="detail">
+        <div class="detail-head">
+          <span class="chord-jianpu">—</span>
+          <span class="chord-symbol" id="cd-symbol">—</span>
+          <span class="chord-name" id="cd-name"></span>
+        </div>
+        <div class="chord-color" id="cd-color"></div>
+        <div class="chord-formula" id="cd-formula"></div>
+        <div class="chord-moods" id="cd-moods"></div>
+        <div class="sub-title">转位 <span class="view-desc">改变的是低音，不是和弦本身</span>
+          <div id="cd-inversion" class="seg"></div>
+        </div>
+        <div id="cd-notes" class="note-list"></div>
+          <div class="btn-row">
+            <button id="btn-block" class="primary">柱式试听</button>
+            <button id="btn-arp" class="primary">琶音试听</button>
+            <button id="btn-stop-chord" class="danger">停止</button>
+            <button id="btn-export-chord">导出此和弦 MIDI</button>
+            <button id="btn-add-roll">加入卷帘</button>
+          </div>
+      </div>
+
+      <div class="sub-title">和弦卷帘（朱红块=根音 · 靛蓝块=和弦音 · 点击任意行试音）<span class="count">最近音符：<span id="last-note">—</span></span></div>
+      <div id="chord-roll-host" class="roll-host chord-roll-host"><canvas id="chord-roll-canvas"></canvas></div>
+    </section>
+
+    <!-- ========== 听辨训练页 ========== -->
+    <section id="page-train" class="page" hidden>
+      <section class="panel">
+        <h2>听辨训练 <span class="count" id="tr-daily"></span></h2>
+        <p class="hint" id="tr-hint">听和弦 → 选类型。错题自动进入复习队列优先出现；连对升级（选项变多）、连错降级。</p>
+        <div class="sub-title">训练内容
+          <div id="tr-track-toggle" class="seg">
+            <button id="tr-track-chord" class="active">和弦</button>
+            <button id="tr-track-interval">音程</button>
+            <button id="tr-track-jianpu">简谱</button>
+            <button id="tr-track-melody">旋律</button>
+            <button id="tr-track-rhythm">节奏</button>
+            <button id="tr-track-prog">进行</button>
+          </div>
+        </div>
+        <div class="sub-title">难度阶段</div>
+        <div id="tr-stage-row" class="root-row"></div>
+        <div class="sub-title">本阶段状态 <span id="tr-level" class="badge"></span></div>
+        <div id="tr-stats" class="tr-stats"></div>
+
+        <div id="tr-question" class="detail">
+          <div class="tr-q-head">
+            <span class="chord-symbol" id="tr-q-mark">?</span>
+            <span class="chord-name" id="tr-q-hint">点击「下一题」开始</span>
+          </div>
+          <div id="tr-result" class="tr-result"></div>
+          <div id="tr-visual-host" class="roll-host chord-roll-host" hidden><canvas id="tr-visual-canvas"></canvas></div>
+          <div id="tr-jianpu-host" class="roll-host chord-roll-host" hidden><canvas id="tr-jianpu-canvas"></canvas></div>
+          <div id="tr-melody-host" class="roll-host" hidden><canvas id="tr-melody-canvas"></canvas></div>
+          <div id="tr-melody-bar" class="btn-row" hidden>
+            <label class="chk">试听速度
+              <select id="tr-melody-bpm">
+                <option value="60">60 BPM（慢）</option>
+                <option value="75">75 BPM</option>
+                <option value="90" selected>90 BPM</option>
+                <option value="120">120 BPM（快）</option>
+              </select>
+            </label>
+            <label class="chk"><input type="checkbox" id="tr-melody-loop"> 循环试听</label>
+          </div>
+          <div id="tr-rhythm-host" hidden>
+            <div id="tr-rhythm-grid" class="rhythm-grid"></div>
+            <p class="hint" id="tr-rhythm-hint">点格子标记「这里有一个音」，再点一次取消。一小节 16 格，每 4 格一拍。</p>
+          </div>
+          <div id="tr-options" class="chips-row tr-options"></div>
+          <div class="btn-row">
+            <button id="btn-tr-next" class="primary">下一题</button>
+            <button id="btn-tr-replay">重听</button>
+            <button id="btn-tr-submit" class="primary" hidden>对答案</button>
+            <button id="btn-tr-export" hidden>导出这段 MIDI</button>
+          </div>
+        </div>
+
+        <div class="sub-title">弱项（正确率 &lt; 60% 且已练 ≥ 3 次）</div>
+        <div id="tr-weak" class="tr-weak">暂无数据</div>
+      </section>
+    </section>
+
+    <!-- ========== 和弦进行页 ========== -->
+    <section id="page-prog" class="page" hidden>
+      <section class="panel">
+        <h2>和弦进行 <span class="count" id="prog-count"></span></h2>
+        <p class="hint">选进行 → 选主音 → 试听（当前和弦高亮）→ 导出标准 SMF 给 FL Studio。所有进行按当前主音移调。</p>
+        <div class="sub-title">进行</div>
+        <div id="prog-list" class="prog-list"></div>
+        <div class="sub-title">主音</div>
+        <div id="prog-tonic" class="root-row"></div>
+
+        <div id="prog-detail" class="detail">
+          <div class="detail-head">
+            <span class="chord-symbol" id="pd-name">—</span>
+            <span class="chord-name" id="pd-desc"></span>
+          </div>
+          <div id="pd-steps" class="step-list"></div>
+          <div class="btn-row">
+            <button id="btn-play-prog" class="primary">播放进行</button>
+            <button id="btn-stop-prog" class="danger">停止</button>
+            <button id="btn-export-prog">导出进行 MIDI</button>
+            <button id="btn-prog-to-roll">复制到卷帘</button>
+            <button id="btn-prog-practice">练这条进行</button>
+          </div>
+          <p class="hint" id="pd-meta"></p>
+        </div>
+      </section>
+    </section>
+
+    <!-- ========== 卷帘编辑页 ========== -->
+    <section id="page-roll" class="page" hidden>
+      <section class="panel">
+        <h2>卷帘编辑器 <span class="count">可自由编辑 · 自动保存 · 朱红块即根音行</span></h2>
+        <div class="btn-row" id="roll-toolbar">
+          <button id="btn-roll-play" class="primary">播放</button>
+          <label class="chk"><input type="checkbox" id="roll-loop" checked> 循环</label>
+          <label class="chk">速度 <input type="number" id="roll-bpm" min="40" max="240" step="1" value="90"> BPM</label>
+          <label class="chk">小节
+            <select id="roll-bars">
+              <option value="4">4</option>
+              <option value="8" selected>8</option>
+              <option value="16">16</option>
+            </select>
+          </label>
+          <label class="chk">网格
+            <select id="roll-snap">
+              <option value="1">1 拍</option>
+              <option value="0.5" selected>½ 拍</option>
+              <option value="0.25">¼ 拍</option>
+            </select>
+          </label>
+          <button id="btn-roll-undo">撤销</button>
+          <button id="btn-roll-clear" class="danger">清空</button>
+          <button id="btn-roll-export">导出 MIDI</button>
+        </div>
+        <p class="hint">左键点空白画音符（按住拖动定位）｜拖音符移动（换行=改音高）｜拖右边缘改时值｜右键删除｜左侧键盘点击试音｜滚轮滚动音区。C2–C6 共 49 个音高行。</p>
+        <div id="roll-host" class="roll-host"><canvas id="roll-canvas"></canvas></div>
+        <div class="hint" id="roll-status">0 个音符</div>
+      </section>
+    </section>
+
+    <!-- ========== 音频引擎（全页面共享） ========== -->
+    <section class="panel">
+      <h2>音频引擎</h2>
+      <div class="btn-row">
+        <button id="btn-init">初始化音频</button>
+        <button id="btn-selftest" class="primary">运行引擎自检</button>
+        <button id="btn-stop-all" class="danger">全部停止</button>
+      </div>
+      <div id="selftest-results" class="selftest"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

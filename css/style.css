@@ -1,0 +1,467 @@
+/* ============================================================
+   简听 JIANTING —— 视觉世界：简谱歌本与中文音乐教材印刷传统
+   页边旧纸 #f6efdb ｜ 内页 #fcf8ea ｜ 墨 #22211d ｜ 朱红 #b5432a ｜ 靛蓝 #2d5f8a
+   宋体 = 刊头与展示声部 ｜ 黑体 = 界面标签 ｜ 楷体 = 红批 ｜ Georgia = 简谱数字
+   分隔靠 1px 墨线；无渐变、无玻璃、无假粗体大标题。
+   ============================================================ */
+:root {
+  --paper: #f6efdb;      /* 页边：微黄旧纸 */
+  --paper-deep: #efe6cc;
+  --panel: #fcf8ea;      /* 内页 */
+  --ink: #22211d;
+  --ink-soft: #6b675c;
+  --hairline: #d8cfb8;
+  --hairline-strong: #a89c7e;
+  --red: #b5432a;
+  --red-deep: #8f3220;
+  --indigo: #2d5f8a;
+  --green: #2f5d3a;
+  --serif: SimSun, "Songti SC", "Noto Serif SC", serif;
+  --sans: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+  --kai: KaiTi, "Kaiti SC", STKaiti, var(--serif);
+  --num: Georgia, "Times New Roman", var(--serif);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 14px;
+  padding: 0 0 56px;
+}
+
+/* 浏览器表面也属于设计：选区、滚动条、焦点环 */
+::selection { background: var(--red); color: var(--paper); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--paper-deep); }
+::-webkit-scrollbar-thumb { background: var(--hairline-strong); border: 2px solid var(--paper-deep); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
+:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+
+/* ---------- 刊头 ---------- */
+header {
+  padding: 22px 28px 0;
+  background: var(--paper);
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+header::after { /* 教材双线：粗线下的细线 */
+  content: "";
+  display: block;
+  margin-top: 0;
+  border-bottom: 3px solid var(--ink);
+  transform: translateY(2px);
+}
+.title-row { display: flex; align-items: baseline; gap: 26px; flex-wrap: wrap; }
+header h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 44px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+header h1 .en {
+  font-family: var(--num);
+  font-size: 20px;
+  letter-spacing: 0.22em;
+  margin-left: 10px;
+  color: var(--red);
+}
+header .tagline {
+  font-family: var(--kai);
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+#main-nav { display: flex; gap: 4px; margin-left: auto; align-items: flex-end; }
+.nav-item { /* 教材目录签：未选页沉入纸底，当前页签片升起接住正文 */
+  padding: 6px 18px 5px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border: 1px solid var(--hairline-strong);
+  border-bottom: none;
+  background: var(--paper-deep);
+  letter-spacing: 0.04em;
+}
+.nav-item:hover { color: var(--ink); }
+.nav-item.active {
+  color: var(--red);
+  border-color: var(--ink);
+  background: var(--panel);
+  padding-bottom: 8px;
+  font-weight: bold;
+  position: relative;
+}
+.nav-item.active::after { /* 签片上的朱红书签线 */
+  content: "";
+  position: absolute;
+  left: 10px; right: 10px; bottom: 4px;
+  height: 2px;
+  background: var(--red);
+}
+.nav-item.disabled { opacity: .45; cursor: not-allowed; }
+
+/* 调性切换（签名交互）+ 状态批注条 */
+.masthead-row {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  padding: 10px 0 12px;
+}
+.key-switcher { display: flex; align-items: center; gap: 6px; }
+.key-switcher .label {
+  font-family: var(--kai);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.key-btn {
+  font-family: var(--num);
+  font-size: 14px;
+  min-width: 34px;
+  padding: 3px 6px;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  cursor: pointer;
+}
+.key-btn:hover { border-color: var(--ink); }
+.key-btn.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--paper);
+}
+#engine-status {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-family: var(--kai);
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px dashed var(--hairline-strong);
+}
+#engine-status[data-state="ready"] { color: var(--green); border-color: var(--green); }
+#engine-status[data-state="partial"], #engine-status[data-state="synth"] { color: var(--red); border-color: var(--red); }
+#engine-status[data-state="loading"] { color: var(--indigo); border-color: var(--indigo); }
+#engine-detail { margin-top: 6px; font-size: 12px; color: var(--ink-soft); }
+
+main { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--hairline-strong);
+  padding: 20px 24px;
+  margin-top: 22px;
+}
+.panel h2 {
+  margin: 0 0 10px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--ink);
+}
+.count { font-size: 12px; color: var(--ink-soft); font-family: var(--sans); }
+.hint { color: var(--ink-soft); font-size: 13px; margin: 8px 0 14px; line-height: 1.7; }
+.hint code { background: var(--paper-deep); padding: 1px 6px; border-radius: 2px; }
+
+.sub-title {
+  margin: 18px 0 8px;
+  font-size: 13px;
+  color: var(--ink);
+  display: flex; align-items: center; gap: 12px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+.sub-title::before { content: "※ "; color: var(--red); }
+
+#type-search {
+  background: var(--paper);
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  padding: 5px 10px;
+  font-size: 13px;
+  width: 240px;
+  font-family: var(--sans);
+}
+#type-search:focus { outline: none; border-color: var(--ink); }
+
+/* ---------- 根音 / 键位 ---------- */
+.root-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.root-btn {
+  font-family: var(--num);
+  min-width: 52px;
+  padding: 6px 0;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  cursor: pointer;
+}
+.root-btn:hover { border-color: var(--ink); background: var(--paper-deep); }
+.root-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+  font-weight: bold;
+}
+.root-btn i { font-style: normal; font-size: 11px; color: var(--ink-soft); display: block; }
+.root-btn.active i { color: rgba(250, 246, 236, .75); }
+
+/* ---------- 和弦类型条目 ---------- */
+.chips-group { margin: 12px 0; }
+.group-title {
+  font-size: 12px; color: var(--ink-soft); margin-bottom: 6px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 4px;
+}
+.chips-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  color: var(--ink);
+  cursor: pointer; text-align: left;
+  position: relative;
+}
+.chip b { font-size: 14px; font-family: var(--num); letter-spacing: 0.02em; }
+.chip i { font-style: normal; font-size: 11px; color: var(--ink-soft); }
+.chip .jp {
+  position: absolute; top: 3px; right: 4px;
+  font-family: var(--num);
+  font-size: 10px;
+  color: var(--red);
+}
+.chip:hover { border-color: var(--ink); background: var(--paper-deep); }
+.chip.active {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.chip.active b { color: var(--paper); }
+.chip.active i { color: rgba(250, 246, 236, .7); }
+.chip.active .jp { color: var(--paper); }
+
+/* 调性切换重算时的级数翻动 */
+.jp-turn { animation: jpTurn .35s ease-out; }
+@keyframes jpTurn {
+  0% { opacity: 0; transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- 详情 ---------- */
+.detail {
+  margin-top: 18px;
+  padding: 16px 20px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+}
+.detail-head { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.chord-jianpu {
+  font-family: var(--num);
+  font-size: 52px;
+  line-height: 1;
+  color: var(--red);
+  min-width: 84px;
+  border-right: 1px solid var(--hairline-strong);
+  padding-right: 16px;
+}
+.chord-symbol { font-size: 30px; font-weight: bold; color: var(--ink); }
+.chord-name { font-size: 14px; color: var(--ink-soft); }
+.chord-color { margin-top: 8px; font-size: 13px; color: var(--red); font-family: var(--kai); }
+.chord-formula { margin-top: 6px; font-size: 13px; color: var(--indigo); font-family: var(--num); }
+.chord-moods { margin-top: 8px; font-size: 13px; color: var(--green); }
+.note-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.note-item {
+  display: inline-flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 12px;
+  background: var(--paper-deep);
+  border: 1px solid var(--hairline);
+}
+.note-item b { font-size: 15px; font-family: var(--num); }
+.note-item i { font-style: normal; font-size: 11px; color: var(--ink-soft); }
+.note-item.is-root { background: rgba(181, 67, 42, .1); border-color: var(--red); }
+.note-item.is-root i { color: var(--red); }
+/* 转位后低音不再是根音：给它靛蓝，和朱红根音并列时一眼分得清。
+   原位时低音就是根音，朱红优先，不加第二套颜色。 */
+.note-item.is-bass:not(.is-root) { background: rgba(45, 95, 138, .1); border-color: var(--indigo); }
+.note-item.is-bass:not(.is-root) i { color: var(--indigo); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 4px; }
+button {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: var(--sans);
+  cursor: pointer;
+}
+button:hover { background: var(--paper-deep); }
+button.primary { background: var(--red); border-color: var(--red); color: var(--paper); }
+button.primary:hover { background: var(--red-deep); }
+button.danger { border-color: var(--red); color: var(--red); }
+button.danger:hover { background: rgba(181, 67, 42, .08); }
+
+/* ---------- 测试面板/自检 ---------- */
+.selftest { margin-top: 12px; font-size: 13px; line-height: 1.7; }
+.st-item { padding: 4px 10px; margin: 2px 0; }
+.st-item.pass { color: var(--green); background: rgba(47, 93, 58, .07); }
+.st-item.fail { color: var(--red); background: rgba(181, 67, 42, .08); }
+.st-manual {
+  margin-top: 10px; padding: 8px 10px;
+  color: var(--ink-soft);
+  font-family: var(--kai);
+  border: 1px dashed var(--hairline-strong);
+  font-size: 12px;
+}
+
+/* ---------- 听辨训练 ---------- */
+.badge {
+  display: inline-block; padding: 2px 10px;
+  background: transparent;
+  color: var(--indigo);
+  font-size: 12px;
+  font-family: var(--num);
+  border: 1px solid var(--indigo);
+}
+.tr-stats { font-size: 13px; color: var(--ink-soft); margin: 6px 0; font-family: var(--kai); }
+.tr-result { margin: 10px 0; }
+.tr-options { margin-top: 12px; }
+.tr-opt { padding: 10px 14px; }
+.tr-weak { display: flex; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--ink-soft); }
+
+/* ---------- 进行页 ---------- */
+.prog-list { display: flex; flex-direction: column; gap: 0; }
+.prog-card {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink); cursor: pointer; text-align: left;
+}
+.prog-card b { font-size: 14px; font-family: var(--serif); font-weight: 400; letter-spacing: 0.02em; }
+.prog-card i { font-style: normal; font-size: 12px; color: var(--ink-soft); }
+.prog-card:hover { background: var(--paper-deep); }
+.prog-card.active { background: var(--paper-deep); }
+.prog-card.active b::before { content: "当前 · "; color: var(--red); font-family: var(--kai); font-size: 12px; }
+.prog-card.active b { color: var(--red); }
+
+.step-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.prog-step {
+  display: flex; flex-direction: column; align-items: center; gap: 1px;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid var(--hairline-strong);
+  min-width: 76px;
+}
+.prog-step b { font-size: 17px; color: var(--indigo); font-family: var(--num); }
+.prog-step span { font-size: 12px; color: var(--ink); }
+.prog-step i { font-style: normal; font-size: 10px; color: var(--ink-soft); }
+.prog-step.playing { background: var(--ink); border-color: var(--ink); }
+.prog-step.playing b, .prog-step.playing span { color: var(--paper); }
+.prog-step.playing i { color: rgba(250, 246, 236, .7); }
+
+/* ---------- 卷帘（画布容器） ---------- */
+.roll-host {
+  overflow-y: auto; max-height: 470px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+}
+.roll-host canvas { display: block; cursor: crosshair; }
+.chord-roll-host { max-height: 480px; }
+.chord-roll-host canvas { cursor: pointer; }
+
+/* ---------- 浏览方式切换 ---------- */
+.seg { display: inline-flex; border: 1px solid var(--ink); }
+.seg button {
+  border: none; border-radius: 0;
+  padding: 6px 16px; font-size: 13px;
+  background: transparent; color: var(--ink-soft);
+}
+.seg button.active { background: var(--ink); color: var(--paper); }
+.view-desc { font-size: 12px; color: var(--ink-soft); }
+
+.chk { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink-soft); }
+.chk input[type="number"] { width: 72px; background: var(--paper); border: 1px solid var(--hairline-strong); color: var(--ink); padding: 4px 6px; font-family: var(--num); }
+.chk select { background: var(--paper); border: 1px solid var(--hairline-strong); color: var(--ink); padding: 4px 6px; }
+
+/* ---------- 简谱记号（听辨训练「简谱」轨） ----------
+   数字即音级，落在 Georgia 数字声部（简谱记号天生属于衬线数字）。
+   八度点在数字上下，减时线在数字下、时值越短线越多，附点与延音横线挂在数字右侧。
+   全大调首调唱名，数字不带升降号——调性写在记号之外（1 = G），这正是这一轨要教的。 */
+.jp-line {
+  display: inline-flex; flex-wrap: wrap; align-items: flex-start;
+  gap: 16px; font-family: var(--num);
+}
+.jp-step { display: inline-flex; flex-direction: column; align-items: center; }
+.jp-step .jp-oct {
+  height: 10px; line-height: 10px; font-size: 14px; color: var(--ink);
+}
+.jp-step .jp-main { display: inline-flex; align-items: center; }
+.jp-step .jp-digit { font-size: 22px; line-height: 1.05; color: var(--ink); }
+.jp-step .jp-tail { font-size: 20px; line-height: 1; color: var(--ink); margin-left: 2px; }
+.jp-step .jp-under {
+  align-self: stretch; display: flex; flex-direction: column; gap: 2px;
+  margin-top: 3px; min-height: 1px;
+}
+.jp-step .jp-under i { display: block; height: 1px; background: var(--ink); }
+
+/* 与正确答案不同的那一拍：朱红，不用描边加粗（世界里描边是控件语义） */
+.jp-step.is-diff .jp-digit,
+.jp-step.is-diff .jp-oct,
+.jp-step.is-diff .jp-tail { color: var(--red); }
+.jp-step.is-diff .jp-under i { background: var(--red); }
+
+/* 选项一行一个：简谱行比芯片宽，塞不进芯片行 */
+.tr-options.is-jianpu { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+.jp-opt {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 14px; text-align: left;
+  background: transparent; border: 1px solid var(--hairline-strong);
+  color: var(--ink); cursor: pointer;
+}
+.jp-opt:hover { border-color: var(--ink); background: var(--paper-deep); }
+.jp-opt:disabled, .jp-opt.done { cursor: default; }
+.jp-opt:disabled:hover { border-color: var(--hairline-strong); background: transparent; }
+.jp-opt.is-correct:disabled:hover { border-color: var(--green); }
+.jp-opt.is-wrong:disabled:hover { border-color: var(--red); }
+.jp-opt .jp-key { font-family: var(--num); font-size: 12px; color: var(--ink-soft); }
+.jp-opt.is-correct { border-color: var(--green); }
+.jp-opt.is-wrong { border-color: var(--red); }
+.jp-opt.is-picked { background: var(--paper-deep); }
+
+.jp-melody-head { display: flex; align-items: baseline; gap: 10px; margin: 4px 0 10px; }
+.jp-melody-head .jp-key1 {
+  font-family: var(--num); font-size: 17px; color: var(--ink);
+}
+.jp-melody-head .jp-key1 b { color: var(--red); font-weight: 400; }
+.jp-melody-head .jp-note { font-family: var(--kai); font-size: 13px; color: var(--ink-soft); }
+.jp-answer { margin-top: 10px; }
+.jp-answer .jp-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+.jp-answer .jp-tag { font-family: var(--sans); font-size: 12px; color: var(--ink-soft); min-width: 46px; }
+
+/* 旋律重建：逐音 diff 行 + 作答卷帘 */
+.mel-line { font-family: var(--num); font-size: 13px; color: var(--ink); }
+.mel-line.is-diff { color: var(--red); }
+#tr-melody-host { max-height: 420px; }
+
+/* 节奏轨：十六分网格。格=十六分，2px 控件线=拍线，点亮的格=墨底。 */
+.rhythm-grid { display: flex; margin: 10px 0 8px; border: 1px solid var(--ink); }
+.rh-cell {
+  flex: 1 1 0; min-width: 0; height: 46px; padding: 0;
+  background: var(--paper); border: none; border-right: 1px solid var(--hairline);
+  cursor: pointer;
+}
+.rh-cell:last-child { border-right: none; }
+.rh-cell.at-beat { border-left: 2px solid var(--hairline-strong); }
+.rh-cell:hover { background: var(--paper-deep); }
+.rh-cell.on { background: var(--ink); }
+.rh-cell:disabled { cursor: default; }
+.rh-cell:disabled:hover { background: var(--paper); }
+.rh-cell.on:disabled:hover { background: var(--ink); }
+.rh-cell.target { border-bottom: 3px solid var(--red); }
