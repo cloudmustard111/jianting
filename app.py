@@ -562,6 +562,14 @@ def main(argv: list[str] | None = None) -> int:
     selftest = '--selftest' in args
     setup_logging(verbose=selftest or '--verbose' in args or sys.stderr is not None)
 
+    # WebView2 与普通浏览器一样默认执行自动播放策略：AudioContext 必须等一次用户手势。
+    # 桌面窗口是用户自己打开的本地应用，没有这个顾虑——解除限制后引擎在开窗时就
+    # 自动恢复上下文（js/audio/engine.js 的 preload 里会尝试 resume），
+    # 状态芯片直接显示「采样就绪」而不是「· 待解锁」。必须在创建 WebView2
+    # 环境之前生效，所以放在 main 最前面；浏览器版入口（server.py）不受影响。
+    os.environ.setdefault(
+        'WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS', '--autoplay-policy=no-user-gesture-required')
+
     t_start = time.monotonic()
     log.info('%s 启动（pid=%s，root=%s）', APP_TITLE, os.getpid(), ROOT)
 

@@ -63,6 +63,11 @@ class Engine {
     this._preloading = (async () => {
       const t0 = (window.performance || Date).now();
       this._ensureContext();
+      // 平台允许自动播放时（桌面窗口与 Android WebView 的壳已解除手势限制），
+      // 开窗即恢复上下文，不等第一次点击；被浏览器策略拦下就静默失败，
+      // 维持「待解锁」提示，由首次手势走 unlockAndLoad 恢复。不 await——
+      // 被拦时 resume 的 promise 会一直挂着，await 会卡住采样加载。
+      this.ctx.resume().catch(() => {});
       if (this.state === ENGINE_STATE.UNINITIALIZED) await this._loadSamples(false);
       this.loadMs = Math.round((window.performance || Date).now() - t0);
       // 诊断用：启动日志与性能验证都读这个数

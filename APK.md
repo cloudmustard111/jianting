@@ -39,6 +39,7 @@ python tools/make_apk_icons.py   # 从 assets/jianting.png 重新生成启动图
 ## 壳上做了什么（都是桌面版没有的）
 
 - **MIDI 导出落盘**：WebView 里 `a[download]` 的 blob 下载不通。`export.js` 检测到 `window.JiantingSave` 时把 SMF 字节 base64 递给壳，`MainActivity$SaveBridge` 写进**系统 Downloads**（API 29+ 走 MediaStore，无需权限；更旧版本写应用私有目录并 Toast 提示路径）。桌面/浏览器不注册这个对象，走的仍是原来的 `a[download]`。
+- **开窗即出声**：Capacitor 的 WebView 默认就是 `setMediaPlaybackRequiresUserGesture(false)`（Bridge.java initWebView 写死），配合 `engine.preload()` 开窗时的自动 `resume()`，APK 打开就直接「采样就绪 · running」，没有浏览器的「待解锁」环节。
 - **亮屏不熄**：练耳与卷帘是持续操作场景，`FLAG_KEEP_SCREEN_ON`。
 - **启动图标**：`tools/make_apk_icons.py` 从 `assets/jianting.png` 生成 5 档密度 legacy 图标 + 自适应前景，底色 `#f6efdb`（旧纸页边）。
 - **应用名**：`简听 JIANTING`。
