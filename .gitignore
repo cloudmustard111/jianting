@@ -25,3 +25,6 @@ android/app/src/main/assets/public/
 # —— 系统/编辑器杂项 ——
 Thumbs.db
 Desktop.ini
+
+# Kotlin 构建缓存
+android/.kotlin/

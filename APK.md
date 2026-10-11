@@ -31,7 +31,7 @@ python tools/make_apk_icons.py   # 从 assets/jianting.png 重新生成启动图
 
 ## 本机构建环境（第一次构建踩过的坑，复现时照这里查）
 
-1. **JDK 版本**：机器默认 JDK 25 跑不了 Gradle 8.14.3（`Unsupported class file major version 69`）。解压了一份免安装 JDK 21 到 `%LOCALAPPDATA%\jdk-21\jdk21`（微软 JDK zip 直链 `https://aka.ms/download-jdk/microsoft-jdk-21-windows-x64.zip`，Adoptium 的 CDN 在本机 SSL 握手失败），`android/gradle.properties` 里 `org.gradle.java.home` 指过去。
+1. **JDK 版本**：机器默认 JDK 25 跑不了 Gradle 8.14.3（`Unsupported class file major version 69`）。`android/gradle.properties` 的 `org.gradle.java.home` 指向机器原有的 Temurin 21：`C:\Users\30249\.jdks\jdk-21.0.12.1+1`。（2026-10-11 整理：曾因跨工作区记忆不通重复下载过一份 JDK 21 到 %LOCALAPPDATA%，已删除；装新工具前先查机器级工具链记忆。）
 2. **Maven 仓库**：`dl.google.com` 直连超时。阿里云镜像已配在两处：`android/build.gradle`（根项目）+ 全局 init 脚本 `~/.gradle/init.d/aliyun-mirror.gradle`（init 脚本先于一切项目脚本，把 node_modules 里 Capacitor 子模块自带的 `google()` 仓库也压到镜像后面，npm 重装无需重改）。
 3. **sdk.dir 转义**：`local.properties` 里的 Windows 反斜杠会被 properties 转义规则吞掉（`\U`→`U`），报「文件名、目录名或卷标语法不正确」。必须写正斜杠：`sdk.dir=C:/Users/30249/AppData/Local/Android/Sdk`。
 4. **build-tools 版本**：本机只有 36.0.0，AGP 8.13 默认要 35.0.0。根 `build.gradle` 末尾的 `subprojects` 块对所有 AGP 模块统一注入 `buildToolsVersion '36.0.0'`，装了 35 之后这段可以直接删。
